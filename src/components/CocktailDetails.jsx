@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'wouter';
+import { useParams } from 'wouter';
 import './CocktailDetails.css';
 
 const CocktailDetails = () => {
@@ -16,6 +16,7 @@ const CocktailDetails = () => {
         console.error('Error fetching cocktail details:', error);
       }
     };
+
     fetchCocktailDetails();
   }, [id]);
 
@@ -25,7 +26,24 @@ const CocktailDetails = () => {
         <div>
           <h2>{cocktail.strDrink}</h2>
           <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className="cocktail-details-image" />
+          <h3>Instructions</h3>
           <p>{cocktail.strInstructions}</p>
+          <h3>Ingredients:</h3>
+          <ul>
+            {Array.from({ length: 15 }, (_, i) => i + 1).map((index) => {
+              const ingredient = cocktail[`strIngredient${index}`];
+              const measure = cocktail[`strMeasure${index}`];
+              if (ingredient) {
+                return (
+                  <li key={index}>
+                    {measure ? `${measure} - ` : ''}
+                    {ingredient}
+                  </li>
+                );
+              }
+              return null;
+            })}
+          </ul>
         </div>
       ) : (
         <p>Loading...</p>
