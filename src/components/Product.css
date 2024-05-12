@@ -66,13 +66,13 @@ input[type="text"]:focus {
 .custom-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #363738;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
-  border: 2px solid #2980b9;
-  border-radius: 5px;
+  border: 2px solid #0d0d0e;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
