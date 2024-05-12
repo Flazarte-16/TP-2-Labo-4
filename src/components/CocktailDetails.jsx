@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'wouter';
+import { useParams, Link } from 'wouter';
 import './CocktailDetails.css';
 
 const CocktailDetails = () => {
@@ -44,6 +44,9 @@ const CocktailDetails = () => {
               return null;
             })}
           </ul>
+          <Link to='/' className='custom-button'>
+            <span>Go Back</span>
+          </Link>
         </div>
       ) : (
         <p>Loading...</p>
