@@ -21,7 +21,7 @@ const CocktailDetails = () => {
   }, [id]);
 
   return (
-    <div className="cocktail-details-container">
+    <section className="cocktail-details-container">
       {cocktail ? (
         <div>
           <h2>{cocktail.strDrink}</h2>
@@ -51,7 +51,7 @@ const CocktailDetails = () => {
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </section>
   );
 };
 

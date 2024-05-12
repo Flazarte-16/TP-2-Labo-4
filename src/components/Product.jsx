@@ -56,7 +56,7 @@ const Cocktails = () => {
               <h3>{cocktail.strDrink}</h3>
               <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className="cocktail-image" />
               <Link href={`/cocktail/${cocktail.idDrink}`}>
-                <button>View More</button>
+                <button className='custom-button'>View More</button>
               </Link>
             </div>
           ))}
