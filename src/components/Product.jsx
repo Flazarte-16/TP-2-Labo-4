@@ -1,34 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'wouter';
+import PopularCocktails from './PopularCocktails';
+import FilteredCocktails from './FilteredCocktails';
 import './Product.css';
 
 const Cocktails = () => {
-  const [cocktails, setCocktails] = useState([]);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const [filter, setFilter] = useState('Popular');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let url = '';
-        if (filter === 'Popular') {
-          url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
-        } else if (filter !== 'All') {
-          url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${filter}`;
-        } else {
-          url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a';
-        }
-        const response = await fetch(url);
-        const data = await response.json();
-        let drinks = data.drinks || [];
-        setCocktails(drinks.filter(cocktail => cocktail !== null));
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [filter]); 
 
   const handleFilterClick = (filter) => {
     setFilter(filter);
@@ -56,16 +33,12 @@ const Cocktails = () => {
         </div>
       </nav>
       <div>
-        <div className="cocktail-list">
-          {cocktails.map(cocktail => (
-            <div key={cocktail.idDrink} className="cocktail-item">
-              <h3>{cocktail.strDrink}</h3>
-              <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} className="cocktail-image" />
-              <Link href={`/cocktail/${cocktail.idDrink}`}>
-                <button className='custom-button'>View More</button>
-              </Link>
-            </div>
-          ))}
+        <div className='cocktail-list'>
+          {filter === 'Popular' ? (
+            <PopularCocktails />
+          ) : (
+            <FilteredCocktails filter={filter} />
+          )}
         </div>
       </div>
       <footer className="footer">

@@ -49,7 +49,9 @@ const CocktailDetails = () => {
           </Link>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className="loading">
+          <div className="spinner"></div>
+        </div>
       )}
     </section>
   );
